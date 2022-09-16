@@ -2,6 +2,7 @@ from torchvision import models
 import torch.nn as nn
 import torch.nn.functional as F
 import torch.optim as optim
+import torch
 
 class Siamese_network(nn.Module):
 

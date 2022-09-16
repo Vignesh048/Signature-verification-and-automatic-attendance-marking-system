@@ -1,15 +1,12 @@
 import cv2
 import numpy as np
-import pandas as pd
 import matplotlib.pyplot as plt
-import csv
-from PIL import Image
 import pytesseract
 import re
 pytesseract.pytesseract.tesseract_cmd = r'C:\Users\vigne\AppData\Local\Programs\Python\Python39\Scripts\Tesseract-OCR\tesseract.exe'
 
 #read your file
-file=r'data\attendance_sheets\attendancesheet12.jpg'
+file=r'data\attendance_sheets\attendancesheet42.jpg'
 img = cv2.imread(file,0)
 
 #thresholding the image to a binary image
@@ -91,7 +88,7 @@ for c in contours:
     if (w>100 and w<1000 and h>10 and h<500):
         image = cv2.rectangle(img,(x,y),(x+w,y+h),(0,125,10),2)
         box.append([x,y,w,h])
-plotting = plt.imshow(image,cmap="gray")
+#plotting = plt.imshow(image,cmap="gray")
 
 #Creating two lists to define row and column in which cell is located
 row=[]
@@ -134,13 +131,14 @@ final.append(newl)
 count = 0
 img = cv2.imread(file,0)
 for boxes in final:
-  
-    if len(boxes) <4:
+    
+    print(len(boxes))
+    if len(boxes) <3:
         continue
 
     boxes = sorted(boxes)
-    roll = boxes[1]
-    sign = boxes[3]
+    roll = boxes[0]
+    sign = boxes[2]
     
 
     texto = img[roll[1]:roll[1]+roll[3],roll[0]:roll[0]+roll[2]]
@@ -153,5 +151,5 @@ for boxes in final:
     text = text[0]
     if(len(text)==9):
         
-        cv2.imwrite(r"data/signatures/"+str(text).strip()+".jpeg",cropped_image)
+        cv2.imwrite(r"data/signatures/set2/"+str(text).strip()+".jpeg",cropped_image)
 

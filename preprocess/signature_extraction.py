@@ -30,7 +30,7 @@ kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (2, 2))
 #Use vertical kernel to detect and save the vertical lines in a jpg
 image_1 = cv2.erode(img_bin, ver_kernel, iterations=3)
 vertical_lines = cv2.dilate(image_1, ver_kernel, iterations=3)
-cv2.imwrite("vertical.jpeg",vertical_lines)
+#cv2.imwrite("vertical.jpeg",vertical_lines)
 #Plot the generated image
 plotting = plt.imshow(image_1,cmap='gray')
 

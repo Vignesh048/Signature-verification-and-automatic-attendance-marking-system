@@ -10,14 +10,14 @@ net.load_state_dict(torch.load("data/model_save/seamese1.pt"))
 
 net.cuda()
 net.eval()
-original = sorted(os.listdir("/content/drive/MyDrive/Siamese_network/original/"))
-check = sorted(os.listdir("/content/drive/MyDrive/Siamese_network/new1/"))
+original = sorted(os.listdir("data/set1/"))
+check = sorted(os.listdir("data/set2"))
 output = []
 for i in range(len(original)):
 
       print(original[i],check[i])
-      img0 = "/content/drive/MyDrive/Siamese_network/original/" + original[i]
-      img1 = "/content/drive/MyDrive/Siamese_network/new1/" + check[7]
+      img0 = "data/set1" + original[i]
+      img1 = "data/set2" + check[7]
     #   cv2_imshow(cv2.resize(cv2.imread(img0), (224, 224)))
     #   cv2_imshow(cv2.resize(cv2.imread(img1), (224, 224)))
       tensor = transforms.ToTensor()

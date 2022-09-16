@@ -6,7 +6,7 @@ import re
 pytesseract.pytesseract.tesseract_cmd = r'C:\Users\vigne\AppData\Local\Programs\Python\Python39\Scripts\Tesseract-OCR\tesseract.exe'
 
 #read your file
-file=r'data\attendance_sheets\attendancesheet42.jpg'
+file=r'data\attendance_sheets\attendance11.jpg'
 img = cv2.imread(file,0)
 
 #thresholding the image to a binary image
@@ -133,12 +133,12 @@ img = cv2.imread(file,0)
 for boxes in final:
     
     print(len(boxes))
-    if len(boxes) <3:
+    if len(boxes) <4:
         continue
 
     boxes = sorted(boxes)
-    roll = boxes[0]
-    sign = boxes[2]
+    roll = boxes[1]
+    sign = boxes[3]
     
 
     texto = img[roll[1]:roll[1]+roll[3],roll[0]:roll[0]+roll[2]]
@@ -151,5 +151,6 @@ for boxes in final:
     text = text[0]
     if(len(text)==9):
         
-        cv2.imwrite(r"data/signatures/set2/"+str(text).strip()+".jpeg",cropped_image)
+        cv2.imwrite(r"data/signatures/set1/"+str(text).strip()+".jpeg",cropped_image)
+plt.imshow(cropped_image)
 
